@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d3c78">
+<title>Français · Test 2 Trainer</title>
+<style>
+:root{
+  --bg:#f4f5f8;--card:#fff;--ink:#16203a;--mut:#667089;--line:#e2e5ee;
+  --blue:#2457c5;--blue2:#e8eefc;--red:#d23b3b;--red2:#fdeaea;--green:#1f9d55;--green2:#e5f6ec;
+  --amber:#b7791f;--amber2:#fdf3e1;--r:14px;--sh:0 1px 2px rgba(20,30,60,.06),0 4px 16px rgba(20,30,60,.06);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0f1320;--card:#181e2e;--ink:#e8ebf3;--mut:#9aa3ba;--line:#2a3247;
+  --blue:#6f9bff;--blue2:#1e2a48;--red:#ff7676;--red2:#3a1f25;--green:#4cd389;--green2:#173326;--amber:#f2b552;--amber2:#3a2f1a;
+  --sh:none}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+.hwrap{max-width:860px;margin:0 auto;padding:10px 16px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+.flag{width:22px;height:16px;border-radius:3px;background:linear-gradient(90deg,#2457c5 33%,#fff 33% 66%,#d23b3b 66%);box-shadow:0 0 0 1px var(--line)}
+.brand small{color:var(--mut);font-weight:500}
+nav{display:flex;gap:4px;overflow-x:auto;margin-top:6px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{border:0;background:none;color:var(--mut);font:inherit;font-weight:600;padding:8px 12px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--blue);border-color:var(--blue)}
+main{max-width:860px;margin:0 auto;padding:18px 16px 60px}
+h1{font-size:1.45rem;margin:.2em 0 .1em}h2{font-size:1.15rem;margin:1.4em 0 .5em}h3{font-size:1rem;margin:1.1em 0 .3em}
+.mut{color:var(--mut)}.small{font-size:.88rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.cat h3{margin:0 0 2px;font-size:1rem}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:10px 0 4px}
+.bar>i{display:block;height:100%;background:var(--blue);border-radius:99px;transition:width .4s}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:600;padding:9px 14px;border-radius:10px;cursor:pointer;transition:transform .05s}
+.btn:active{transform:scale(.98)}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.sm{padding:6px 10px;font-size:.88rem}
+.btn.ghost{background:none}
+.btn.danger{color:var(--red)}
+.hero{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 12px;min-width:92px}
+.kpi b{display:block;font-size:1.2rem}.kpi span{font-size:.78rem;color:var(--mut)}
+.qtop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.tag{display:inline-block;background:var(--blue2);color:var(--blue);font-weight:700;font-size:.78rem;padding:3px 9px;border-radius:99px}
+.prompt{font-size:1.45rem;font-weight:700;line-height:1.3;margin:10px 0 4px;word-wrap:break-word}
+.prompt .gap{display:inline-block;min-width:70px;border-bottom:2px solid var(--blue);margin:0 3px}
+.sub{color:var(--mut);margin-bottom:14px}
+input.ans{width:100%;font:inherit;font-size:1.1rem;padding:12px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);outline:none}
+input.ans:focus{border-color:var(--blue)}
+.acc{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0 12px}
+.acc button{min-width:36px;padding:6px 0;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;font:inherit;cursor:pointer}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:6px 0 4px}
+.choices button{padding:13px;font:inherit;font-weight:600;border:2px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);cursor:pointer;text-align:left}
+.choices button.ok{border-color:var(--green);background:var(--green2)}
+.choices button.no{border-color:var(--red);background:var(--red2)}
+.choices button kbd{opacity:.5;font-size:.75rem;margin-right:6px}
+.fb{border-radius:12px;padding:12px 14px;margin-top:14px}
+.fb.ok{background:var(--green2);color:var(--green)}
+.fb.almost{background:var(--amber2);color:var(--amber)}
+.fb.no{background:var(--red2);color:var(--red)}
+.fb .sol{color:var(--ink);font-weight:700;margin-top:2px}
+.fb .ex{color:var(--ink);opacity:.85;font-size:.92rem;margin-top:4px}
+.flash{min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;user-select:none}
+.flash .back{font-size:1.3rem;font-weight:700;color:var(--blue);margin-top:10px}
+.prog{height:6px;background:var(--line);border-radius:99px;overflow:hidden;flex:1;max-width:240px}
+.prog i{display:block;height:100%;background:var(--green)}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-size:.8rem;text-transform:uppercase;letter-spacing:.4px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.rule{border-left:4px solid var(--blue);padding:6px 12px;background:var(--blue2);border-radius:0 10px 10px 0;margin:8px 0}
+textarea{width:100%;min-height:90px;font:13px/1.4 ui-monospace,Menlo,monospace;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.note{font-size:2.4rem;font-weight:800}
+.mistake{border-bottom:1px solid var(--line);padding:8px 0}
+.mistake:last-child{border:0}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;opacity:0;transition:opacity .25s;pointer-events:none;z-index:20}
+.toast.on{opacity:1}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--card);color:var(--mut);font:inherit;font-weight:600;padding:6px 11px;cursor:pointer}
+.seg button.on{background:var(--blue);color:#fff}
+.spacer{height:10px}
+</style>
+</head>
+<body>
+<header><div class="hwrap">
+  <div class="brand"><span class="flag"></span>Français · Test 2 <small>Unité 2</small></div>
+  <nav id="nav">
+    <button data-v="home" class="on">Training</button>
+    <button data-v="theory">Theorie</button>
+    <button data-v="verbs">Verben</button>
+    <button data-v="voc">Vokabeln</button>
+    <button data-v="stats">Fortschritt</button>
+    <button data-v="sync">Sync</button>
+  </nav>
+</div></header>
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* ================= DATEN ================= */
+const VOC=[
+["rouler","rollen, fahren"],["ça roule","es läuft"],["vite / rapidement","schnell","Adverb"],["la vitesse","Geschwindigkeit"],
+["conduire","fahren (lenken), steuern"],["le permis de conduire","Führerschein"],["la voiture","Auto"],["le volant / au volant","Steuer / am Steuer"],
+["le trajet","Strecke, Fahrt"],["le bouchon","Stau"],["voyager","reisen"],["le pays","Land"],["en ville","in der Stadt"],
+["le moyen de transport","Transportmittel"],["les transports en commun","öffentliche Transportmittel","m. pl."],["monter","(hinauf)steigen, einsteigen"],
+["descendre","hinuntergehen, aussteigen"],["l'accident","Unfall","m."],["le piéton / la piétonne","Fussgänger/in"],["traverser","überqueren, durchqueren"],
+["se déplacer","sich fortbewegen"],["la trottinette électrique","E-Scooter"],["l'autoroute","Autobahn","f."],["rouler à plus de 100 km/h","schneller als 100 km/h fahren"],
+["la station-service","Tankstelle"],["faire le plein","volltanken"],["s'arrêter","anhalten"],["la circulation","Verkehr"],["le panneau","Schild"],
+["il est interdit (de fumer)","es ist verboten (zu rauchen)"],["l'interdiction","Verbot","f."],["il faut","man muss"],["montrer la carte d'identité","Personalausweis (ID) zeigen"],
+["la contravention","Strafzettel, Geldbusse"],["le chiffre","Zahl"],["la population","Bevölkerung"],["à l'étranger","im Ausland","m."],
+["naître","geboren werden"],["il est né / elle est née","er/sie ist geboren"],["mourir","sterben"],["il est mort / elle est morte","er/sie ist gestorben"],
+["battre le record mondial","den Weltrekord schlagen"],["le sportif professionnel / la sportive professionnelle","professionelle Sportler/in"],["gagner","gewinnen"],
+["créer","gründen"],["la société","Gesellschaft, Firma"],["oublier","vergessen"],["signifier","bedeuten"],["l'écrivain / l'écrivaine","Schriftsteller/in"],
+["échanger","(aus)tauschen"],["régulièrement","regelmässig"],["agréable","angenehm"],["en tout cas","auf jeden Fall"],["inviter","einladen"],
+["s'amuser","sich amüsieren"],["d'abord","zuerst"],["ensuite","dann, danach"],["avant","vorher, vor"],["après","nachher, nach"],["pendant","während"],
+["souvent","oft"],["déjà","schon"],["enfin","endlich"],["parfois","manchmal"],["depuis","seit"]
+];
+// Verben 21–40 (Liste de 80 verbes utiles)
+const V21=[
+{i:"jouer",p:"joué",de:"spielen"},{i:"prendre",p:"pris",de:"nehmen"},{i:"donner",p:"donné",de:"geben"},{i:"aimer",p:"aimé",de:"lieben / mögen"},
+{i:"désirer",p:"désiré",de:"wünschen"},{i:"détester",p:"détesté",de:"hassen"},{i:"acheter",p:"acheté",de:"kaufen"},{i:"vendre",p:"vendu",de:"verkaufen"},
+{i:"coûter",p:"coûté",de:"kosten",only:["il","elle","ils","elles"]},{i:"pouvoir",p:"pu",de:"können"},{i:"vouloir",p:"voulu",de:"wollen"},
+{i:"devoir",p:"dû",de:"müssen"},{i:"savoir",p:"su",de:"wissen"},{i:"dormir",p:"dormi",de:"schlafen"},{i:"sentir",p:"senti",de:"fühlen"},
+{i:"vivre",p:"vécu",de:"leben"},{i:"ouvrir",p:"ouvert",de:"öffnen"},{i:"fermer",p:"fermé",de:"schliessen"},
+{i:"monter",p:"monté",de:"hinaufsteigen",e:1},{i:"descendre",p:"descendu",de:"hinuntersteigen",e:1}
+];
+const BAHNHOF=[
+{i:"aller",p:"allé",de:"gehen"},{i:"venir",p:"venu",de:"kommen"},{i:"arriver",p:"arrivé",de:"ankommen"},{i:"partir",p:"parti",de:"weggehen, abfahren"},
+{i:"entrer",p:"entré",de:"eintreten"},{i:"sortir",p:"sorti",de:"hinausgehen"},{i:"monter",p:"monté",de:"hinaufsteigen"},{i:"descendre",p:"descendu",de:"hinuntersteigen"},
+{i:"naître",p:"né",de:"geboren werden"},{i:"mourir",p:"mort",de:"sterben"},{i:"rester",p:"resté",de:"bleiben"},{i:"tomber",p:"tombé",de:"fallen"},
+{i:"retourner",p:"retourné",de:"zurückkehren"},{i:"passer",p:"passé",de:"vorbeigehen"},{i:"devenir",p:"devenu",de:"werden"},
+{i:"revenir",p:"revenu",de:"zurückkommen"},{i:"rentrer",p:"rentré",de:"heimkehren"}
+].map(v=>({...v,e:1}));
+const PRON=[
+{i:"se lever",p:"levé",de:"aufstehen"},{i:"se réveiller",p:"réveillé",de:"aufwachen"},{i:"se doucher",p:"douché",de:"duschen"},
+{i:"s'habiller",p:"habillé",de:"sich anziehen"},{i:"se coucher",p:"couché",de:"ins Bett gehen"},{i:"s'amuser",p:"amusé",de:"sich amüsieren"},
+{i:"s'arrêter",p:"arrêté",de:"anhalten"},{i:"se déplacer",p:"déplacé",de:"sich fortbewegen"},{i:"se dépêcher",p:"dépêché",de:"sich beeilen"},
+{i:"se reposer",p:"reposé",de:"sich ausruhen"},{i:"se promener",p:"promené",de:"spazieren gehen"},{i:"se laver",p:"lavé",de:"sich waschen"}
+].map(v=>({...v,r:1}));
+const PERS=[
+{k:"je",av:"j'ai",et:"je suis",pr:"je me suis",ag:["","e"],lab:"je"},
+{k:"tu",av:"tu as",et:"tu es",pr:"tu t'es",ag:["","e"],lab:"tu"},
+{k:"il",av:"il a",et:"il est",pr:"il s'est",ag:[""],lab:"il"},
+{k:"elle",av:"elle a",et:"elle est",pr:"elle s'est",ag:["e"],lab:"elle"},
+{k:"nous",av:"nous avons",et:"nous sommes",pr:"nous nous sommes",ag:["s","es"],lab:"nous"},
+{k:"vous",av:"vous avez",et:"vous êtes",pr:"vous vous êtes",ag:["s","es","","e"],lab:"vous"},
+{k:"ils",av:"ils ont",et:"ils sont",pr:"ils se sont",ag:["s"],lab:"ils"},
+{k:"elles",av:"elles ont",et:"elles sont",pr:"elles se sont",ag:["es"],lab:"elles"}
+];
+// Lückentext verbes pronominaux
+const PTEXT=[
+["Hier, Marie ___ à six heures.","se réveiller",["s'est réveillée"]],
+["Elle ___ tout de suite.","se lever",["s'est levée"]],
+["Ensuite, elle ___ et elle a pris le petit-déjeuner.","se doucher",["s'est douchée"]],
+["Elle ___ vite et elle a pris le bus.","s'habiller",["s'est habillée"]],
+["Le bus ___ devant l'école.","s'arrêter",["s'est arrêté"]],
+["Le soir, Marie et ses amis ___ au cinéma.","s'amuser",["se sont amusés"]],
+["Marie ___ à vingt-trois heures.","se coucher",["s'est couchée"]],
+["Ce matin, je (m.) ___ trop tard.","se réveiller",["me suis réveillé"]],
+["Alors je (m.) ___ pour ne pas rater le train.","se dépêcher",["me suis dépêché"]],
+["Mes copines ___ en ville samedi.","se promener",["se sont promenées"]],
+["Tu (f.) ___ après le sport ?","se reposer",["t'es reposée"]],
+["Vous (m. pl.) ___ à vélo ou en bus ?","se déplacer",["vous êtes déplacés"]],
+["Nous (f. pl.) ___ ensemble avant la fête.","se préparer",["nous sommes préparées"]],
+["Mon frère ___ à sept heures.","se lever",["s'est levé"]]
+];
+// il faut / il est interdit de
+const FAUT=[
+{t:"c",q:"Sur l'autoroute, ___ rouler à plus de 120 km/h.",a:"il est interdit de"},
+{t:"c",q:"Pour conduire une voiture, ___ avoir le permis de conduire.",a:"il faut"},
+{t:"c",q:"Au volant, ___ téléphoner.",a:"il est interdit de"},
+{t:"c",q:"Au feu rouge, ___ s'arrêter.",a:"il faut"},
+{t:"c",q:"Dans le train, ___ fumer.",a:"il est interdit de"},
+{t:"c",q:"Avant un long trajet, ___ faire le plein.",a:"il faut"},
+{t:"c",q:"Pour voyager à l'étranger, ___ montrer la carte d'identité.",a:"il faut"},
+{t:"c",q:"En ville, ___ rouler trop vite.",a:"il est interdit de"},
+{t:"c",q:"Les piétons : ___ traverser la rue au passage piéton.",a:"il faut"},
+{t:"c",q:"___ boire de l'alcool avant de conduire.",a:"il est interdit de"},
+{t:"c",q:"À vélo, ___ respecter les panneaux.",a:"il faut"},
+{t:"c",q:"Sur le trottoir, ___ rouler en trottinette électrique.",a:"il est interdit de"},
+{t:"c",q:"Sur l'autoroute, ___ respecter la limitation de vitesse.",a:"il faut"},
+{t:"i",q:"Es ist verboten zu rauchen.",a:["il est interdit de fumer"]},
+{t:"i",q:"Man muss den Führerschein zeigen.",a:["il faut montrer le permis de conduire","il faut montrer le permis"]},
+{t:"i",q:"Es ist verboten, zu schnell zu fahren.",a:["il est interdit de rouler trop vite","il est interdit de conduire trop vite"]},
+{t:"i",q:"Man muss an der Tankstelle anhalten.",a:["il faut s'arrêter à la station-service"]},
+{t:"i",q:"Man muss den Ausweis zeigen.",a:["il faut montrer la carte d'identité"]}
+];
+// Négation: [Satz, Ziel, Lösungen, DE]
+const NEG=[
+["Je fume.","ne … plus",["je ne fume plus"],"Ich rauche nicht mehr."],
+["Il conduit vite.","ne … jamais",["il ne conduit jamais vite"],"Er fährt nie schnell."],
+["Nous voyons quelqu'un.","ne … personne",["nous ne voyons personne"],"Wir sehen niemanden."],
+["Elle achète quelque chose.","ne … rien",["elle n'achète rien"],"Sie kauft nichts."],
+["Tu prends le bus.","ne … pas",["tu ne prends pas le bus"],"Du nimmst den Bus nicht."],
+["J'ai compris.","ne … pas",["je n'ai pas compris"],"Ich habe nicht verstanden."],
+["Il a mangé quelque chose.","ne … rien",["il n'a rien mangé"],"Er hat nichts gegessen."],
+["Nous avons vu quelqu'un.","ne … personne",["nous n'avons vu personne"],"Wir haben niemanden gesehen."],
+["Quelqu'un est venu.","personne ne …",["personne n'est venu"],"Niemand ist gekommen."],
+["Tout est facile.","rien ne …",["rien n'est facile"],"Nichts ist einfach."],
+["Elle est partie.","ne … jamais",["elle n'est jamais partie"],"Sie ist nie weggegangen."],
+["Ils roulent encore en voiture.","ne … plus",["ils ne roulent plus en voiture"],"Sie fahren nicht mehr Auto."],
+["Quelqu'un traverse la rue.","personne ne …",["personne ne traverse la rue"],"Niemand überquert die Strasse."],
+["Quelque chose bouge.","rien ne …",["rien ne bouge"],"Nichts bewegt sich."],
+["Je me suis arrêté.","ne … pas",["je ne me suis pas arrêté","je ne me suis pas arrêtée"],"Ich habe nicht angehalten."],
+["Vous avez oublié quelque chose.","ne … rien",["vous n'avez rien oublié"],"Ihr habt nichts vergessen."],
+["On peut fumer ici.","ne … pas",["on ne peut pas fumer ici"],"Man darf hier nicht rauchen."],
+["Il a toujours respecté la limitation.","ne … jamais",["il n'a jamais respecté la limitation"],"Er hat die Begrenzung nie respektiert."],
+["J'invite quelqu'un.","ne … personne",["je n'invite personne"],"Ich lade niemanden ein."],
+["Elle travaille encore.","ne … plus",["elle ne travaille plus"],"Sie arbeitet nicht mehr."],
+["Quelqu'un a gagné.","personne ne …",["personne n'a gagné"],"Niemand hat gewonnen."],
+["Ils ont acheté quelque chose.","ne … rien",["ils n'ont rien acheté"],"Sie haben nichts gekauft."]
+];
+// Prépositions: [Satz, Lösung, Erklärung]
+const PREP=[
+["Je vais à l'école ___ vélo.","à","auf etwas sitzen → à"],["Je vais au travail ___ bus.","en","in etwas sitzen → en"],
+["On va à Berne ___ train.","en","in etwas sitzen → en"],["Elle va en ville ___ pied.","à","zu Fuss → à pied"],
+["Il roule ___ moto.","à","auf etwas sitzen → à"],["Nous voyageons ___ avion.","en","in etwas sitzen → en"],
+["Tu viens ___ voiture ?","en","in etwas sitzen → en"],["Je me déplace ___ trottinette électrique.","à","auf etwas stehen → à"],
+["Ils vont à Lucerne ___ bateau.","en","in/auf grossem Fahrzeug → en bateau"],["On rentre ___ tram.","en","in etwas sitzen → en"],
+["Elle se promène ___ cheval.","à","auf etwas sitzen → à cheval"],["Je vais à l'aéroport ___ taxi.","en","in etwas sitzen → en"],
+["J'habite ___ Zurich.","à","Stadt → à"],["Ma tante vit ___ Paris.","à","Stadt → à"],["Nous allons ___ Genève.","à","Stadt → à"],
+["Il travaille ___ Londres.","à","Stadt → à"],["J'habite ___ Suisse.","en","weibliches Land (la Suisse) → en"],
+["On part ___ France.","en","la France → en"],["Elle vit ___ Italie.","en","l'Italie (f.) → en"],["Ils vont ___ Allemagne.","en","l'Allemagne (f.) → en"],
+["Nous passons nos vacances ___ Espagne.","en","l'Espagne (f.) → en"],["Il est né ___ Portugal.","au","le Portugal (m.) → au"],
+["Je voyage ___ Canada.","au","le Canada (m.) → au"],["Elle habite ___ Japon.","au","le Japon (m.) → au"],["On va ___ Maroc.","au","le Maroc (m.) → au"],
+["Mon oncle vit ___ Brésil.","au","le Brésil (m.) → au"],["Ils partent ___ États-Unis.","aux","les États-Unis (pl.) → aux"],
+["Elle vit ___ Pays-Bas.","aux","les Pays-Bas (pl.) → aux"],["Il travaille ___ Iran.","en","männlich, aber mit Vokal → en Iran"],
+["Nous allons ___ Autriche.","en","l'Autriche (f.) → en"]
+];
+const CATS=[
+{id:"voc",name:"Vocabulaire Unité 2",d:"Wörter FR ↔ DE übersetzen",ico:"📘"},
+{id:"faut",name:"il faut / il est interdit de",d:"Gebote & Verbote im Verkehr",ico:"🚦"},
+{id:"neg",name:"La négation",d:"ne pas, ne plus, ne jamais, ne rien, ne personne, personne ne, rien ne",ico:"🚫"},
+{id:"prep",name:"Les prépositions",d:"en bus, à vélo, à Zurich, en Suisse, au, aux",ico:"🧭"},
+{id:"pc",name:"Verbes 21–40 au passé composé",d:"jouer … descendre",ico:"🕰️"},
+{id:"bh",name:"Bahnhofsverben (être)",d:"aller, venir, partir … mit être",ico:"🚉"},
+{id:"pr",name:"Verbes pronominaux",d:"je me suis levé(e) – Lückentext",ico:"🪞"}
+];
+
+/* ================= SPEICHER ================= */
+const KEY="fr-test2-trainer-v1";
+const rid=()=>Math.random().toString(36).slice(2,8);
+function blank(){return {v:1,items:{},log:{answered:0,correct:0,days:{}},updated:0,device:rid()}}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.items&&s.log)return s}catch(e){}return blank()}
+let st=load();
+function save(){st.updated=Date.now();try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){toast("Speichern nicht möglich")}}
+window.addEventListener("storage",e=>{if(e.key===KEY){st=load();if(view!=="session")render()}});
+const today=()=>new Date().toISOString().slice(0,10);
+function record(id,res){
+  const it=st.items[id]||{b:0,c:0,w:0,t:0};
+  if(res==="ok"){it.b=Math.min(5,it.b+1);it.c++}
+  else if(res==="almost"){it.c+=.5}
+  else{it.b=Math.max(0,it.b-2);it.w++}
+  it.t=Date.now();st.items[id]=it;
+  st.log.answered++;st.log.correct+=res==="ok"?1:res==="almost"?.5:0;
+  const d=today();st.log.days[d]=(st.log.days[d]||0)+1;save();
+}
+function undoWrong(id){const it=st.items[id];if(!it)return;it.w=Math.max(0,it.w-1);it.b=Math.min(5,it.b+2);it.c++;st.log.correct+=1;save()}
+
+/* ================= POOLS ================= */
+const POOL={
+  voc:VOC.flatMap((_,i)=>["vd"+i,"vf"+i]),
+  faut:FAUT.map((_,i)=>"f"+i),
+  neg:NEG.map((_,i)=>"n"+i),
+  prep:PREP.map((_,i)=>"p"+i),
+  pc:V21.map(v=>"pc:"+v.i),
+  bh:BAHNHOF.map(v=>"bh:"+v.i),
+  pr:[...PRON.map(v=>"pr:"+v.i),...PTEXT.map((_,i)=>"pt"+i)]
+};
+const box=id=>(st.items[id]||{b:0}).b;
+function mastery(cat){const p=POOL[cat];return p.reduce((s,id)=>s+box(id),0)/(p.length*5)}
+function seen(cat){return POOL[cat].filter(id=>st.items[id]).length}
+function pick(ids,n){
+  const arr=ids.map(id=>{const it=st.items[id];const b=it?it.b:0;let w=Math.pow(6-b,2);if(it&&it.w>it.c)w*=1.5;return {id,k:Math.pow(Math.random(),1/w)}});
+  arr.sort((a,b)=>b.k-a.k);return arr.slice(0,Math.min(n,arr.length)).map(x=>x.id);
+}
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const rnd=a=>a[Math.random()*a.length|0];
+
+/* ================= PRÜFEN ================= */
+function norm(s){return String(s).toLowerCase().normalize("NFC").replace(/[’`´‘]/g,"'").replace(/\s*'\s*/g,"'").replace(/[«»"]/g,"").replace(/\s*…\s*/g," ").replace(/[.!?;:]+\s*$/,"").replace(/\s+/g," ").trim()}
+const strip=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/œ/g,"oe");
+function variants(a){
+  const out=new Set([a]);
+  const parts=a.split(/\s+\/\s+|\s*,\s*/);
+  for(const p of parts){
+    out.add(p);
+    out.add(p.replace(/\([^)]*\)/g,"").replace(/\s+/g," ").trim());
+    out.add(p.replace(/[()]/g,""));
+    if(/\/[a-zäöüé]+/i.test(p)){out.add(p.replace(/\/[a-zäöüé]+/gi,""));out.add(p.replace(/\//g,""))}
+  }
+  return [...out].map(norm).filter(Boolean);
+}
+const DEART=/^(der|die|das|den|ein|eine|einen) /;
+const FRART=/^(le |la |les |l'|un |une |des )/;
+function check(input,answers,lang){
+  let raw=norm(input);if(!raw)return "no";
+  const ins=new Set([raw,norm(raw.replace(/\((e|s|es)\)/g,"")),norm(raw.replace(/\((e|s|es)\)/g,"$1"))]);
+  const vs=answers.flatMap(variants);
+  for(const i of ins){if(vs.includes(i))return "ok"}
+  if(lang==="de"){for(const i of ins){const a=i.replace(DEART,"");if(vs.some(v=>v.replace(DEART,"")===a))return "ok"}}
+  for(const i of ins){if(vs.some(v=>strip(v)===strip(i)))return "almost:Akzent/Schreibweise prüfen"}
+  if(lang==="fr"){for(const i of ins){const a=i.replace(FRART,"");if(a!==i||true){if(vs.some(v=>FRART.test(v)&&v.replace(FRART,"")===a))return "almost:Artikel fehlt"}}}
+  return "no";
+}
+
+/* ================= FRAGEN BAUEN ================= */
+function verbBy(id){const [pre,inf]=id.split(":");const L=pre==="pc"?V21:pre==="bh"?BAHNHOF:PRON;return L.find(v=>v.i===inf)}
+function pcForms(v,p){
+  let aux=v.r?p.pr:v.e?p.et:p.av;
+  const ags=(v.e||v.r)?p.ag:[""];
+  const full=ags.map(g=>aux+" "+v.p+g);
+  const noSub=full.map(f=>f.replace(/^(je |j'|tu |il |elle |nous |vous |ils |elles )/,""));
+  return {full,all:[...full,...noSub],show:aux+" "+v.p+(ags.length>1&&ags.includes("")?"("+ags.filter(x=>x)[0]+")":ags[0])};
+}
+function build(id){
+  let m;
+  if((m=id.match(/^v([df])(\d+)$/))){
+    const [fr,de,note]=VOC[+m[2]];
+    if(m[1]==="d")return {id,cat:"voc",type:"input",tag:"Vocabulaire · DE → FR",prompt:de,sub:"Auf Französisch (mit Artikel)"+(note?" · "+note:""),answers:[fr],lang:"fr",show:fr+(note?" ("+note+")":"")};
+    return {id,cat:"voc",type:"input",tag:"Vocabulaire · FR → DE",prompt:fr,sub:"Auf Deutsch"+(note?" · "+note:""),answers:[de],lang:"de",show:de};
+  }
+  if((m=id.match(/^f(\d+)$/))){
+    const f=FAUT[+m[1]];
+    if(f.t==="c")return {id,cat:"faut",type:"choice",tag:"il faut / il est interdit de",prompt:f.q,sub:"Ergänze: Gebot oder Verbot?",choices:["il faut","il est interdit de"],answer:f.a,show:f.q.replace("___",f.a),ex:"il faut + Infinitiv (ohne de) · il est interdit de + Infinitiv"};
+    return {id,cat:"faut",type:"input",tag:"il faut / il est interdit de",prompt:f.q,sub:"Übersetze auf Französisch",answers:f.a,lang:"fr",show:f.a[0],ex:"il faut + Infinitiv · il est interdit de + Infinitiv"};
+  }
+  if((m=id.match(/^n(\d+)$/))){
+    const [s,t,a,de]=NEG[+m[1]];
+    return {id,cat:"neg",type:"input",tag:"La négation",prompt:s,sub:"Verneine mit «"+t+"»  ·  ("+de+")",answers:a,lang:"fr",show:a[0].charAt(0).toUpperCase()+a[0].slice(1)+".",ex:negEx(t)};
+  }
+  if((m=id.match(/^p(\d+)$/))){
+    const [s,a,ex]=PREP[+m[1]];
+    return {id,cat:"prep",type:"choice",tag:"Les prépositions",prompt:s,sub:"Welche Präposition passt?",choices:["à","en","au","aux"],answer:a,show:s.replace("___",a),ex};
+  }
+  if((m=id.match(/^(pc|bh|pr):/))){
+    const v=verbBy(id);const ps=PERS.filter(p=>!v.only||v.only.includes(p.k));const p=rnd(ps);
+    const f=pcForms(v,p);
+    const cat=m[1];
+    const tg=cat==="pc"?"Passé composé · Verben 21–40":cat==="bh"?"Passé composé · Bahnhofsverb":"Passé composé · verbe pronominal";
+    let ex=v.r?"Reflexive Verben: immer être + Angleichung.":v.e?"Bahnhofsverb → être + Angleichung an das Subjekt.":"avoir + Partizip.";
+    if(p.k==="vous"&&(v.e||v.r))ex+=" (vous: auch Höflichkeitsform → mit/ohne s möglich)";
+    return {id,cat,type:"input",tag:tg,prompt:p.lab+"  ·  "+v.i,sub:"Passé composé ("+v.de+")",answers:f.all,lang:"fr",show:f.show,ex};
+  }
+  if((m=id.match(/^pt(\d+)$/))){
+    const [s,inf,a]=PTEXT[+m[1]];
+    return {id,cat:"pr",type:"input",tag:"Verbes pronominaux · Lückentext",prompt:s,gap:true,sub:"Setze «"+inf+"» ins passé composé",answers:a,lang:"fr",show:a[0],ex:"Reflexivpronomen + être + Partizip (angeglichen)."};
+  }
+  return null;
+}
+function negEx(t){
+  if(t.startsWith("personne ne"))return "Als Subjekt: Personne ne/n' + Verb (ohne pas).";
+  if(t.startsWith("rien ne"))return "Als Subjekt: Rien ne/n' + Verb (ohne pas).";
+  if(t.includes("personne"))return "ne … personne. Im passé composé steht personne NACH dem Partizip: je n'ai vu personne.";
+  return "ne + Verb + "+t.replace("ne … ","")+". Im passé composé: ne + avoir/être + "+t.replace("ne … ","")+" + Partizip.";
+}
+function card(id){const [fr,de,note]=VOC[+id.slice(2)];return {id,cat:"voc",type:"card",tag:"Karteikarte",front:fr,back:de+(note?" · "+note:"")}}
+
+/* ================= SESSION ================= */
+let view="home",S=null;
+function startSession(ids,opts={}){
+  const qs=ids.map(id=>opts.cards?card(id):build(id)).filter(Boolean);
+  if(!qs.length)return;
+  S={qs,i:0,res:[],exam:!!opts.exam,title:opts.title||"Training",requeued:new Set(),done:false,answered:false};
+  view="session";render();
+}
+function practice(cat,mode){
+  let ids;
+  if(cat==="voc"){
+    const base=pick(VOC.map((_,i)=>mode==="cards"?"vf"+i:mode==="fd"?"vf"+i:"vd"+i),mode==="cards"?20:15);
+    if(mode==="cards")return startSession(base,{cards:true,title:"Karteikarten"});
+    ids=base;
+  }else ids=pick(POOL[cat],cat==="prep"||cat==="faut"?12:12);
+  startSession(ids,{title:CATS.find(c=>c.id===cat).name});
+}
+function weak(){
+  const all=Object.values(POOL).flat();
+  const w=all.filter(id=>st.items[id]&&st.items[id].b<3);
+  const ids=w.length>=6?pick(w,15):pick(all,15);
+  startSession(ids,{title:"Schwächen üben"});
+}
+function exam(){
+  const ids=[...pick(VOC.map((_,i)=>"vd"+i),6),...pick(VOC.map((_,i)=>"vf"+i),4),...pick(POOL.faut,4),...pick(POOL.neg,5),...pick(POOL.prep,5),...pick(POOL.pc,5),...pick(POOL.bh,3),...pick(POOL.pr,4)];
+  startSession(ids,{exam:true,title:"Test-Simulation"});
+}
+function answer(val){
+  if(S.answered)return;
+  const q=S.qs[S.i];let res,msg="";
+  if(q.type==="choice"){res=val===q.answer?"ok":"no";S.chosen=val}
+  else if(q.type==="card"){res=val}
+  else{const r=check(val,q.answers,q.lang);[res,msg]=r.split(":");S.typed=val}
+  S.answered=true;S.cur={res,msg};
+  record(q.id,res);
+  S.res.push({q,res,given:q.type==="choice"?val:q.type==="input"?val:""});
+  if(!S.exam&&res==="no"&&!S.requeued.has(q.id)&&q.type!=="card"){S.requeued.add(q.id);const nq=q.cat&&q.id.match(/^(pc|bh|pr):/)?build(q.id):q;S.qs.push(nq)}
+  if(S.exam){next();return}
+  render();
+}
+function override(){const r=S.res[S.res.length-1];if(!r||r.res==="ok")return;undoWrong(r.q.id);r.res="ok";S.cur.res="ok";S.cur.msg="als richtig gewertet";
+  const idx=S.qs.lastIndexOf(r.q);if(S.requeued.has(r.q.id)&&S.qs.length-1>S.i){S.qs.splice(S.qs.length-1,1);S.requeued.delete(r.q.id)}render()}
+function next(){S.i++;S.answered=false;S.cur=null;S.chosen=null;S.flipped=false;if(S.i>=S.qs.length){S.done=true}render()}
+
+/* ================= RENDER ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),1800)}
+document.getElementById("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(view==="session"&&S&&!S.done&&!confirm("Training abbrechen?"))return;view=b.dataset.v;S=null;render();scrollTo(0,0)});
+function setNav(){document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===(view==="session"?"home":view)))}
+function pct(x){return Math.round(x*100)}
+function totalMastery(){const c=CATS.map(c=>mastery(c.id));return c.reduce((a,b)=>a+b,0)/c.length}
+function streak(){let n=0;const d=new Date();for(;;){const k=d.toISOString().slice(0,10);if(st.log.days[k]){n++;d.setDate(d.getDate()-1)}else break}return n}
+
+function render(){setNav();const A=$("#app");
+  if(view==="session")return renderSession(A);
+  if(view==="home")return renderHome(A);
+  if(view==="theory")return renderTheory(A);
+  if(view==="verbs")return renderVerbs(A);
+  if(view==="voc")return renderVoc(A);
+  if(view==="stats")return renderStats(A);
+  if(view==="sync")return renderSync(A);
+}
+function renderHome(A){
+  const acc=st.log.answered?Math.round(st.log.correct/st.log.answered*100):0;
+  A.innerHTML=`
+  <div class="hero">
+    <div><h1>Bonjour Liam 👋</h1><div class="mut">Lernziele Test 2 · HS 2026</div></div>
+    <div class="kpis">
+      <div class="kpi"><b>${pct(totalMastery())}%</b><span>beherrscht</span></div>
+      <div class="kpi"><b>${st.log.answered}</b><span>Antworten</span></div>
+      <div class="kpi"><b>${acc}%</b><span>Trefferquote</span></div>
+      <div class="kpi"><b>${streak()}🔥</b><span>Tage am Stück</span></div>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom:14px">
+    <button class="btn pri" data-a="exam">📝 Test-Simulation</button>
+    <button class="btn" data-a="weak">🎯 Schwächen üben</button>
+  </div>
+  <div class="grid">${CATS.map(c=>{const m=mastery(c.id);return `
+    <div class="card cat">
+      <h3>${c.ico} ${esc(c.name)}</h3><div class="mut small">${esc(c.d)}</div>
+      <div class="bar"><i style="width:${pct(m)}%"></i></div>
+      <div class="small mut" style="margin-bottom:10px">${pct(m)}% · ${seen(c.id)}/${POOL[c.id].length} geübt</div>
+      <div class="row">${c.id==="voc"?`
+        <button class="btn sm pri" data-p="voc" data-m="df">DE → FR</button>
+        <button class="btn sm" data-p="voc" data-m="fd">FR → DE</button>
+        <button class="btn sm" data-p="voc" data-m="cards">Karteikarten</button>`:
+        `<button class="btn sm pri" data-p="${c.id}">Üben</button>`}
+      </div>
+    </div>`}).join("")}
+  </div>
+  <p class="small mut" style="margin-top:18px">Dein Fortschritt wird nur in diesem Browser gespeichert. Unter <b>Sync</b> überträgst du ihn auf ein anderes Gerät.</p>`;
+  A.onclick=e=>{const b=e.target.closest("button");if(!b)return;
+    if(b.dataset.a==="exam")exam();else if(b.dataset.a==="weak")weak();else if(b.dataset.p)practice(b.dataset.p,b.dataset.m)};
+}
+function promptHTML(q){
+  const t=esc(q.prompt);
+  return q.prompt.includes("___")?t.replace("___",'<span class="gap">&nbsp;</span>'):t;
+}
+function renderSession(A){
+  if(S.done)return renderEnd(A);
+  const q=S.qs[S.i];const n=S.qs.length;
+  let body="";
+  if(q.type==="card"){
+    body=`<div class="card flash" id="flip"><div class="mut small">${S.flipped?"":"Tippen zum Umdrehen"}</div><div class="prompt">${esc(q.front)}</div>${S.flipped?`<div class="back">${esc(q.back)}</div>`:""}</div>
+    ${S.flipped&&!S.answered?`<div class="row" style="margin-top:12px"><button class="btn" data-r="no" style="flex:1">✗ Nicht gewusst</button><button class="btn" data-r="almost" style="flex:1">≈ Fast</button><button class="btn pri" data-r="ok" style="flex:1">✓ Gewusst</button></div>`:""}`;
+  }else{
+    body=`<div class="prompt">${promptHTML(q)}</div><div class="sub">${esc(q.sub)}</div>`;
+    if(q.type==="input"){
+      body+=`<input class="ans" id="ans" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Antwort eingeben…" ${S.answered?"disabled":""} value="${S.answered?esc(S.typed||""):""}">
+      ${S.answered?"":`<div class="acc">${["é","è","ê","à","â","ç","î","ï","ô","û","ù","ë","œ","'"].map(c=>`<button tabindex="-1" data-c="${c}">${c}</button>`).join("")}</div>
+      <div class="row"><button class="btn pri" id="chk">Prüfen ↵</button><button class="btn ghost" id="skip">Weiss nicht</button></div>`}`;
+    }else{
+      body+=`<div class="choices">${q.choices.map((c,i)=>{let cl="";if(S.answered){if(c===q.answer)cl="ok";else if(c===S.chosen)cl="no"}return `<button data-ch="${esc(c)}" class="${cl}" ${S.answered?"disabled":""}><kbd>${i+1}</kbd>${esc(c)}</button>`}).join("")}</div>`;
+    }
+  }
+  let fb="";
+  if(S.answered&&q.type!=="card"){
+    const r=S.cur.res;
+    fb=`<div class="fb ${r==="ok"?"ok":r==="almost"?"almost":"no"}">
+      <b>${r==="ok"?"✓ Richtig!":r==="almost"?"≈ Fast richtig":"✗ Leider falsch"}</b>${S.cur.msg?` <span class="small">– ${esc(S.cur.msg)}</span>`:""}
+      ${r!=="ok"||q.type==="input"?`<div class="sol">${esc(q.show)}</div>`:""}
+      ${q.ex?`<div class="ex">${esc(q.ex)}</div>`:""}
+    </div>
+    <div class="row" style="margin-top:12px"><button class="btn pri" id="nxt">Weiter ↵</button>${r!=="ok"&&q.type==="input"?`<button class="btn ghost small" id="ovr">Ich hatte recht (Tippfehler)</button>`:""}</div>`;
+  }
+  if(S.answered&&q.type==="card")fb=`<div class="row" style="margin-top:12px"><button class="btn pri" id="nxt">Weiter ↵</button></div>`;
+  A.innerHTML=`<div class="qtop"><span class="tag">${esc(q.tag)}</span><div class="row small mut" style="gap:10px"><span>${S.i+1} / ${n}</span><div class="prog"><i style="width:${S.i/n*100}%"></i></div></div></div>
+  <div class="card">${body}${fb}</div>
+  <div class="row" style="margin-top:12px"><button class="btn ghost sm" id="quit">← ${S.exam?"Test abbrechen":"Beenden"}</button>${S.exam?'<span class="small mut">Test-Modus: Auswertung am Ende</span>':""}</div>`;
+  const inp=$("#ans");
+  if(inp&&!S.answered){inp.focus();inp.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();answer(inp.value)}})}
+  A.onclick=e=>{const b=e.target.closest("button,#flip");if(!b)return;
+    if(b.id==="flip"){if(!S.flipped){S.flipped=true;render()}return}
+    if(b.dataset.c&&inp){const s=inp.selectionStart??inp.value.length,en=inp.selectionEnd??s;inp.value=inp.value.slice(0,s)+b.dataset.c+inp.value.slice(en);inp.focus();inp.setSelectionRange(s+1,s+1);return}
+    if(b.id==="chk")answer(inp.value);
+    else if(b.id==="skip")answer("");
+    else if(b.dataset.ch!==undefined)answer(b.dataset.ch);
+    else if(b.dataset.r)answer(b.dataset.r);
+    else if(b.id==="nxt")next();
+    else if(b.id==="ovr")override();
+    else if(b.id==="quit"){if(S.exam&&S.res.length&&!confirm("Test wirklich abbrechen?"))return;if(S.res.length&&!S.exam){S.done=true;render()}else{view="home";S=null;render()}}
+  };
+  const nb=$("#nxt");if(nb)nb.focus();
+}
+document.addEventListener("keydown",e=>{
+  if(view!=="session"||!S||S.done)return;const q=S.qs[S.i];
+  if(S.answered&&e.key==="Enter"&&document.activeElement?.id!=="nxt"){e.preventDefault();next();return}
+  if(!S.answered&&q.type==="choice"){const n=+e.key;if(n>=1&&n<=q.choices.length)answer(q.choices[n-1])}
+  if(q.type==="card"&&!S.answered){if(e.key===" "&&!S.flipped){e.preventDefault();S.flipped=true;render()}else if(S.flipped&&e.key==="1")answer("no");else if(S.flipped&&e.key==="2")answer("almost");else if(S.flipped&&e.key==="3")answer("ok")}
+});
+function renderEnd(A){
+  const first=new Map();S.res.forEach(r=>{if(!first.has(r.q.id))first.set(r.q.id,r)});
+  const rs=[...first.values()];
+  const pts=rs.reduce((s,r)=>s+(r.res==="ok"?1:r.res==="almost"?.5:0),0);const max=rs.length;
+  const note=Math.round((5*pts/max+1)*10)/10;
+  const wrong=rs.filter(r=>r.res!=="ok"&&r.q.type!=="card");
+  A.innerHTML=`<div class="card" style="text-align:center">
+    <div class="mut">${esc(S.title)} – fertig!</div>
+    ${S.exam?`<div class="note" style="color:${note>=4?"var(--green)":"var(--red)"}">${note.toFixed(1)}</div><div class="mut">geschätzte Note (Punkte/Max × 5 + 1)</div>`:""}
+    <h1>${pts} / ${max} Punkte</h1>
+    <div class="row" style="justify-content:center;margin-top:8px">
+      ${wrong.length?`<button class="btn pri" id="again">Fehler nochmals üben (${wrong.length})</button>`:""}
+      <button class="btn" id="home">Zur Übersicht</button>
+    </div></div>
+  ${wrong.length?`<h2>Das musst du nochmals anschauen</h2><div class="card">${wrong.map(r=>`<div class="mistake"><div class="small mut">${esc(r.q.tag)}</div><div><b>${esc(r.q.prompt)}</b></div>
+    ${r.given?`<div class="small" style="color:var(--red)">Deine Antwort: ${esc(r.given)}</div>`:""}<div class="small" style="color:var(--green)">Richtig: ${esc(r.q.show)}</div></div>`).join("")}</div>`:`<p class="mut" style="text-align:center;margin-top:16px">Alles richtig – très bien ! 🎉</p>`}`;
+  A.onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.id==="home"){view="home";S=null;render()}else if(b.id==="again"){startSession(wrong.map(r=>r.q.id),{title:"Fehler üben"})}};
+}
+function renderTheory(A){
+  A.innerHTML=`<h1>Theorie</h1><p class="mut">Kurz und knapp zu jedem Lernziel.</p>
+  <h2>🚦 il faut / il est interdit de</h2><div class="card">
+   <div class="rule"><b>il faut</b> + Infinitiv = man muss<br><i>Il faut respecter la limitation de vitesse.</i></div>
+   <div class="rule"><b>il est interdit de</b> + Infinitiv = es ist verboten<br><i>Il est interdit de rouler trop vite.</i></div>
+   <p class="small mut">Merke: «il faut» <b>ohne</b> de, «il est interdit» <b>mit</b> de (vor Vokal: d' → il est interdit d'entrer).</p></div>
+  <h2>🚫 La négation</h2><div class="card"><table>
+   <tr><th>Form</th><th>Bedeutung</th><th>Beispiel</th></tr>
+   <tr><td>ne … pas</td><td>nicht</td><td>Je ne roule pas vite.</td></tr>
+   <tr><td>ne … plus</td><td>nicht mehr</td><td>Il ne fume plus.</td></tr>
+   <tr><td>ne … jamais</td><td>nie</td><td>Elle ne conduit jamais.</td></tr>
+   <tr><td>ne … rien</td><td>nichts</td><td>Je n'achète rien.</td></tr>
+   <tr><td>ne … personne</td><td>niemanden</td><td>Je ne vois personne.</td></tr>
+   <tr><td>personne ne …</td><td>niemand (Subjekt)</td><td>Personne ne traverse.</td></tr>
+   <tr><td>rien ne …</td><td>nichts (Subjekt)</td><td>Rien ne bouge.</td></tr></table>
+   <div class="rule">Passé composé: <b>ne + avoir/être + pas/plus/jamais/rien + Partizip</b><br><i>Je n'ai rien mangé. Il n'est jamais venu.</i></div>
+   <div class="rule">Ausnahme <b>personne</b>: steht nach dem Partizip<br><i>Je n'ai vu personne.</i></div>
+   <div class="rule">Reflexiv: <b>ne + Pronomen + être + pas + Partizip</b><br><i>Je ne me suis pas levé.</i></div>
+   <p class="small mut">Nie «pas» zusammen mit plus/jamais/rien/personne. Vor Vokal: ne → n'.</p></div>
+  <h2>🧭 Les prépositions</h2><div class="card">
+   <h3>Transportmittel</h3>
+   <div class="rule"><b>à</b> = auf etwas / zu Fuss: à pied, à vélo, à moto, à trottinette, à cheval</div>
+   <div class="rule"><b>en</b> = in etwas drin: en bus, en train, en voiture, en avion, en tram, en métro, en bateau, en taxi</div>
+   <h3>Städte & Länder</h3><table>
+   <tr><th>Wann</th><th>Präposition</th><th>Beispiel</th></tr>
+   <tr><td>Stadt</td><td><b>à</b></td><td>à Zurich, à Paris, à Genève</td></tr>
+   <tr><td>Land weiblich (meist auf -e)</td><td><b>en</b></td><td>en Suisse, en France, en Italie</td></tr>
+   <tr><td>Land männlich mit Vokal</td><td><b>en</b></td><td>en Iran, en Irak</td></tr>
+   <tr><td>Land männlich</td><td><b>au</b></td><td>au Portugal, au Canada, au Japon</td></tr>
+   <tr><td>Land Plural</td><td><b>aux</b></td><td>aux États-Unis, aux Pays-Bas</td></tr></table>
+   <p class="small mut">Ausnahme: le Mexique, le Mozambique → au Mexique (männlich, obwohl auf -e).</p></div>
+  <h2>🕰️ Passé composé</h2><div class="card">
+   <div class="rule"><b>avoir</b> + Partizip (die meisten Verben): j'ai joué, tu as pris, nous avons vu</div>
+   <div class="rule"><b>être</b> + Partizip bei den <b>Bahnhofsverben</b> und allen <b>reflexiven Verben</b>. Das Partizip wird <b>angeglichen</b>:<br>
+   elle est allé<b>e</b> · ils sont venu<b>s</b> · elles sont parti<b>es</b> · elle s'est levé<b>e</b></div>
+   <p class="small mut">Bahnhofsverben: aller, venir, arriver, partir, entrer, sortir, monter, descendre, naître, mourir, rester, tomber, retourner, passer, devenir, revenir, rentrer.</p></div>
+  <h2>🪞 Verbes pronominaux au passé</h2><div class="card"><table>
+   <tr><th>Person</th><th>se lever</th></tr>
+   <tr><td>je</td><td>je me suis levé(e)</td></tr><tr><td>tu</td><td>tu t'es levé(e)</td></tr>
+   <tr><td>il / elle</td><td>il s'est levé / elle s'est levée</td></tr><tr><td>nous</td><td>nous nous sommes levé(e)s</td></tr>
+   <tr><td>vous</td><td>vous vous êtes levé(e)(s)</td></tr><tr><td>ils / elles</td><td>ils se sont levés / elles se sont levées</td></tr></table></div>`;
+  A.onclick=null;
+}
+function renderVerbs(A){
+  const tbl=(L,aux)=>`<table><tr><th>Infinitiv</th><th>Deutsch</th><th>Passé composé</th><th></th></tr>${L.map(v=>{const id=(aux==="pc"?"pc:":aux==="bh"?"bh:":"pr:")+v.i;const b=box(id);
+    const f=v.r?"je me suis "+v.p+"(e)":v.e?"je suis "+v.p+"(e)":(/^[aeiouéh]/.test(v.p)?"j'ai ":"j'ai ")+v.p;
+    return `<tr><td><b>${esc(v.i)}</b></td><td class="mut">${esc(v.de)}</td><td>${esc(v.only?"il a "+v.p:f)}</td><td><span class="dot" style="background:${dotc(b)}"></span></td></tr>`}).join("")}</table>`;
+  A.innerHTML=`<h1>Verben</h1><p class="mut">Punkt = wie gut du das Verb kannst (grau = noch nie geübt).</p>
+  <h2>Verben 21–40</h2><div class="card">${tbl(V21,"pc")}<div class="spacer"></div><button class="btn sm pri" data-p="pc">Üben</button></div>
+  <h2>Bahnhofsverben (mit être)</h2><div class="card">${tbl(BAHNHOF,"bh")}<div class="spacer"></div><button class="btn sm pri" data-p="bh">Üben</button></div>
+  <h2>Verbes pronominaux</h2><div class="card">${tbl(PRON,"pr")}<div class="spacer"></div><button class="btn sm pri" data-p="pr">Üben</button></div>`;
+  A.onclick=e=>{const b=e.target.closest("button");if(b&&b.dataset.p)practice(b.dataset.p)};
+}
+function dotc(b){return ["var(--line)","#e05252","#e38a3a","#d9b528","#7cc35b","#1f9d55"][b]}
+function renderVoc(A){
+  let f=renderVoc.f||"";
+  const draw=()=>{const q=norm(f);const rows=VOC.map((v,i)=>({v,i})).filter(({v})=>!q||strip(norm(v[0])).includes(strip(q))||strip(norm(v[1])).includes(strip(q)));
+    $("#vt").innerHTML=`<tr><th>Français</th><th>Deutsch</th><th></th></tr>`+rows.map(({v,i})=>{const b=Math.min(box("vd"+i),box("vf"+i));return `<tr><td><b>${esc(v[0])}</b>${v[2]?` <span class="mut small">${esc(v[2])}</span>`:""}</td><td>${esc(v[1])}</td><td><span class="dot" style="background:${dotc(st.items["vd"+i]||st.items["vf"+i]?Math.max(1,b):0)}"></span></td></tr>`}).join("")};
+  A.innerHTML=`<h1>Vokabeln Unité 2</h1><p class="mut">${VOC.length} Wörter aus «Voca Unité 2» (Rencontres A2).</p>
+   <input class="ans" id="vf" placeholder="Suchen…" value="${esc(f)}" style="margin-bottom:12px">
+   <div class="card"><table id="vt"></table></div>`;
+  draw();$("#vf").addEventListener("input",e=>{f=renderVoc.f=e.target.value;draw()});A.onclick=null;
+}
+function renderStats(A){
+  const days=Object.keys(st.log.days).sort().slice(-14);
+  const weakIds=Object.entries(st.items).filter(([,v])=>v.w>0).sort((a,b)=>(b[1].w-b[1].c*.5)-(a[1].w-a[1].c*.5)).slice(0,12).map(([id])=>id);
+  const nice=id=>{if(/^v[df]/.test(id)){const v=VOC[+id.slice(2)];return v[0]+" – "+v[1]}if(/^(pc|bh|pr):/.test(id))return id.split(":")[1];const q=build(id);return q?q.prompt:id};
+  const mx=Math.max(1,...days.map(d=>st.log.days[d]));
+  A.innerHTML=`<h1>Fortschritt</h1>
+  <div class="card">${CATS.map(c=>`<div style="margin:6px 0 12px"><div class="row" style="justify-content:space-between"><b>${c.ico} ${esc(c.name)}</b><span class="mut small">${pct(mastery(c.id))}%</span></div><div class="bar"><i style="width:${pct(mastery(c.id))}%"></i></div></div>`).join("")}</div>
+  <h2>Letzte Tage</h2><div class="card">${days.length?`<div style="display:flex;align-items:flex-end;gap:6px;height:110px">${days.map(d=>`<div style="flex:1;text-align:center"><div style="background:var(--blue);border-radius:6px 6px 0 0;height:${Math.max(4,st.log.days[d]/mx*80)}px" title="${st.log.days[d]}"></div><div class="small mut">${d.slice(8)}.${d.slice(5,7)}</div></div>`).join("")}</div>`:'<span class="mut">Noch keine Daten.</span>'}</div>
+  <h2>Schwierigste Aufgaben</h2><div class="card">${weakIds.length?weakIds.map(id=>`<div class="mistake row" style="justify-content:space-between"><span>${esc(nice(id))}</span><span class="small mut">✗ ${st.items[id].w} · ✓ ${st.items[id].c}</span></div>`).join(""):'<span class="mut">Noch keine Fehler – weiter so!</span>'}
+  ${weakIds.length?`<div class="spacer"></div><button class="btn sm pri" id="pw">Diese üben</button>`:""}</div>`;
+  A.onclick=e=>{const b=e.target.closest("button");if(b&&b.id==="pw")startSession(weakIds,{title:"Schwierigste Aufgaben"})};
+}
+/* ================= SYNC ================= */
+const enc=o=>"FRT2:"+btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+function dec(s){s=s.trim();if(s.startsWith("{"))return JSON.parse(s);if(s.startsWith("FRT2:"))s=s.slice(5);return JSON.parse(decodeURIComponent(escape(atob(s.replace(/\s+/g,"")))))}
+function merge(imp){
+  if(!imp||!imp.items)throw new Error("Ungültige Daten");
+  let n=0;
+  for(const [id,v] of Object.entries(imp.items)){const l=st.items[id];if(!l||(v.t||0)>(l.t||0)){st.items[id]=v;n++}}
+  st.log.answered=Math.max(st.log.answered,imp.log?.answered||0);st.log.correct=Math.max(st.log.correct,imp.log?.correct||0);
+  for(const [d,c] of Object.entries(imp.log?.days||{}))st.log.days[d]=Math.max(st.log.days[d]||0,c);
+  save();return n;
+}
+function renderSync(A){
+  const code=enc(st);
+  A.innerHTML=`<h1>Sync</h1>
+  <p class="mut">Alles wird nur lokal in diesem Browser gespeichert (localStorage) – kein Konto, kein Server. Tabs im gleichen Browser synchronisieren sich automatisch. Für ein anderes Gerät:</p>
+  <div class="card"><h3 style="margin-top:0">1 · Auf diesem Gerät: Code kopieren</h3>
+   <textarea readonly id="out">${esc(code)}</textarea>
+   <div class="row" style="margin-top:8px"><button class="btn pri sm" id="cp">Code kopieren</button><button class="btn sm" id="dl">Als Datei speichern</button>${navigator.share?'<button class="btn sm" id="sh">Teilen…</button>':""}</div></div>
+  <div class="spacer"></div>
+  <div class="card"><h3 style="margin-top:0">2 · Auf dem anderen Gerät: Code einfügen</h3>
+   <textarea id="in" placeholder="FRT2:…"></textarea>
+   <div class="row" style="margin-top:8px"><button class="btn pri sm" id="im">Zusammenführen</button><label class="btn sm">Datei laden<input type="file" id="fl" accept=".json,application/json,text/plain" hidden></label></div>
+   <p class="small mut">Beim Zusammenführen gewinnt pro Aufgabe immer der neuere Stand – es geht nichts verloren.</p></div>
+  <div class="spacer"></div>
+  <div class="card"><div class="row" style="justify-content:space-between"><span class="small mut">Gerät ${esc(st.device)} · zuletzt gespeichert ${st.updated?new Date(st.updated).toLocaleString("de-CH"):"–"}</span><button class="btn sm danger" id="rs">Fortschritt löschen</button></div></div>`;
+  A.onclick=async e=>{const b=e.target.closest("button");if(!b)return;
+    if(b.id==="cp"){try{await navigator.clipboard.writeText(code);toast("Code kopiert ✓")}catch(_){$("#out").select();document.execCommand("copy");toast("Code kopiert ✓")}}
+    if(b.id==="sh"){try{await navigator.share({title:"Français Test 2 – Fortschritt",text:code})}catch(_){}}
+    if(b.id==="dl"){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(st)],{type:"application/json"}));a.download="francais-test2-fortschritt-"+today()+".json";a.click();URL.revokeObjectURL(a.href)}
+    if(b.id==="im"){try{const n=merge(dec($("#in").value));toast(n+" Einträge übernommen ✓");render()}catch(err){toast("Code ungültig")}}
+    if(b.id==="rs"){if(confirm("Wirklich den ganzen Fortschritt auf diesem Gerät löschen?")){const d=st.device;st=blank();st.device=d;save();render();toast("Zurückgesetzt")}}
+  };
+  $("#fl").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{const n=merge(dec(await f.text()));toast(n+" Einträge übernommen ✓");render()}catch(_){toast("Datei ungültig")}});
+}
+render();
+</script>
+</body>
+</html>
